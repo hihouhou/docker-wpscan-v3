@@ -9,19 +9,21 @@ FROM debian:latest
 
 MAINTAINER hihouhou < hihouhou@hihouhou.com >
 
+ENV WPSCAN_V3_VERSION v3.2.0
+
 # Update & install packages for wpscan
 RUN apt-get update && \
-    apt-get install -y gcc git ruby ruby-dev libcurl4-openssl-dev make zlib1g-dev procps
+    apt-get install -y gcc wget ruby ruby-dev libcurl4-openssl-dev make zlib1g-dev procps libxslt-dev libxml2-dev
 
-#Clone repository
-RUN git clone https://github.com/wpscanteam/wpscan-v3.git
-
-WORKDIR /wpscan-v3
-
-#Install bundler
-RUN gem install bundler
-
-#Copy config file
-RUN bundle install && rake install
+#Fetch repository
+RUN mkdir wpscan-v3 && \
+    cd wpscan-v3 && \
+    wget https://api.github.com/repos/wpscanteam/wpscan-v3/tarball/${WPSCAN_V3_VERSION} -O ${WPSCAN_V3_VERSION}.tar.gz && \
+    tar xf  ${WPSCAN_V3_VERSION}.tar.gz --strip-components=1 && \
+    gem install bundler && \
+    gem install pkg-config && \
+    bundle config build.nokogiri --use-system-libraries && \
+    bundle install && \
+    rake install
 
 CMD /wpscan-v3/bin/wpscan -f json --update --url $URL
