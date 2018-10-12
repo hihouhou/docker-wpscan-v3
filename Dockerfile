@@ -18,7 +18,7 @@ RUN apt-get update && \
 #Fetch repository
 RUN mkdir wpscan-v3 && \
     cd wpscan-v3 && \
-    wget https://api.github.com/repos/wpscanteam/wpscan-v3/tarball/${WPSCAN_V3_VERSION} -O ${WPSCAN_V3_VERSION}.tar.gz && \
+    wget https://api.github.com/repos/wpscanteam/wpscan/tarball/${WPSCAN_V3_VERSION} -O ${WPSCAN_V3_VERSION}.tar.gz && \
     tar xf  ${WPSCAN_V3_VERSION}.tar.gz --strip-components=1 && \
     gem install bundler && \
     gem install pkg-config && \
