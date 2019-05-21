@@ -15,7 +15,7 @@ ENV WPSCAN_V3_VERSION v3.5.3
 RUN apt-get update && \
     apt-get install -y gnupg2 gcc wget libcurl4-openssl-dev make zlib1g-dev procps libxslt-dev libxml2-dev curl g++ autoconf automake bison libc6-dev libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libtool libyaml-dev make pkg-config sqlite3 zlib1g-dev libgmp-dev libreadline-dev libssl-dev
 
-RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+RUN gpg2 --keyserver ipv4.pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 RUN curl -sSL https://get.rvm.io | bash -s stable
 
 RUN /bin/bash -c "source /etc/profile.d/rvm.sh && \
