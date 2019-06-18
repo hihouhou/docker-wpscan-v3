@@ -9,7 +9,7 @@ FROM debian:latest
 
 MAINTAINER hihouhou < hihouhou@hihouhou.com >
 
-ENV WPSCAN_V3_VERSION v3.5.3
+ENV WPSCAN_V3_VERSION v3.5.4
 
 # Update & install packages for wpscan
 RUN apt-get update && \
